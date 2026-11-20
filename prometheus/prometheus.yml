@@ -1,0 +1,20 @@
+global:
+  scrape_interval: 15s
+  scrape_timeout: 10s
+
+scrape_configs:
+  - job_name: spring-services
+    metrics_path: /actuator/prometheus
+    static_configs:
+      - targets:
+          - bff:8080
+          - ui:8081
+          - ingredient-catalogue:8082
+          - recipe-catalogue:8083
+          - user:8084
+        # GoodNight has no actuator - it's a throwaway tester, not scraped.
+    relabel_configs:
+      - source_labels: [__address__]
+        regex: '([^:]+):.*'
+        target_label: service
+        replacement: '$1'

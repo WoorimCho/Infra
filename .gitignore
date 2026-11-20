@@ -1,0 +1,15 @@
+# Local secrets - never commit. The stack's real .env lives one directory up,
+# outside this repository, but this rule is here so a copy can never slip in.
+.env
+*.env
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Editors
+.idea/
+.vscode/
